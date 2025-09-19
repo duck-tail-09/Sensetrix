@@ -39,6 +39,9 @@ This page allows detailed **management of individual patient records**.
 * Supports **actions** such as editing, viewing, or managing patient data.
 * Uses a **JSON file** for sample data, which can later be replaced by a database backend.
 <img width="1882" height="857" alt="image" src="https://github.com/user-attachments/assets/c937f4ce-2fd8-4352-8bf1-52bdfddec81e" />
+<img width="1356" height="478" alt="image" src="https://github.com/user-attachments/assets/a15bef4e-fa74-4c92-9826-eed52cd8b6d0" />
+<img width="1839" height="878" alt="image" src="https://github.com/user-attachments/assets/a3cc9745-1e06-41bb-ba4e-c22724a8c898" />
+
 
 ---
 
