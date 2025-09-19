@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Patient Manager</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+    .container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    input, select, textarea, button { width: 100%; margin: 8px 0; padding: 10px; border-radius: 4px; border: 1px solid #ccc; }
+    button { background: #007bff; color: white; border: none; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .hidden { display: none; }
+    .card { background: #f9f9f9; padding: 10px; margin: 8px 0; border-radius: 6px; }
+    a { color: #007bff; cursor: pointer; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Add Patient Form -->
+    <div id="formView">
+      <h2>Add Patient</h2>
+      <form id="patientForm">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="number" name="age" placeholder="Age" required>
+        <select name="sex" required>
+          <option value="">Select Sex</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+        <input type="number" name="weight" placeholder="Weight (kg)" required>
+        <select name="bloodGroup" required>
+          <option value="">Blood Group</option>
+          <option>A+</option><option>A-</option>
+          <option>B+</option><option>B-</option>
+          <option>O+</option><option>O-</option>
+          <option>AB+</option><option>AB-</option>
+        </select>
+        <input type="date" name="lastVisit">
+        <textarea name="symptoms" placeholder="Symptoms"></textarea>
+        <input type="number" name="heartRate" placeholder="Heart Rate (bpm)" required>
+        <input type="number" name="temperature" placeholder="Temperature (°C)" required>
+        <button type="submit">Save Patient</button>
+      </form>
+      <p><a onclick="showList()">Go to Patient List</a></p>
+    </div>
+
+    <!-- Patient List -->
+    <div id="listView" class="hidden">
+      <h2>Patient List</h2>
+      <div id="patientList"></div>
+      <p><a onclick="showForm()">Add New Patient</a></p>
+    </div>
+
+    <!-- Patient Profile -->
+    <div id="profileView" class="hidden">
+      <h2 id="pname">Patient Profile</h2>
+      <ul id="details"></ul>
+      <p><a onclick="showList()">Back to List</a></p>
+    </div>
+
+  </div>
+
+  <script>
+    const formView = document.getElementById("formView");
+    const listView = document.getElementById("listView");
+    const profileView = document.getElementById("profileView");
+
+    const form = document.getElementById("patientForm");
+    const list = document.getElementById("patientList");
+    const details = document.getElementById("details");
+    const pname = document.getElementById("pname");
+
+    let patients = JSON.parse(localStorage.getItem("patients")) || [];
+
+    function savePatients() {
+      localStorage.setItem("patients", JSON.stringify(patients));
+    }
+
+    function renderList() {
+      list.innerHTML = "";
+      if (patients.length === 0) {
+        list.innerHTML = "<p>No patients found.</p>";
+        return;
+      }
+      patients.forEach(p => {
+        list.innerHTML += `
+          <div class="card">
+            <strong>${p.name}</strong> (${p.age}, ${p.sex})<br>
+            <a onclick="showProfile(${p.id})">View Profile</a>
+          </div>
+        `;
+      });
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.id = Date.now();
+      patients.push(data);
+      savePatients();
+      form.reset();
+      alert("Patient saved!");
+    });
+
+    function showForm() {
+      formView.classList.remove("hidden");
+      listView.classList.add("hidden");
+      profileView.classList.add("hidden");
+    }
+
+    function showList() {
+      renderList();
+      listView.classList.remove("hidden");
+      formView.classList.add("hidden");
+      profileView.classList.add("hidden");
+    }
+
+    function showProfile(id) {
+      const patient = patients.find(p => p.id == id);
+      if (!patient) return;
+      pname.innerText = patient.name + "'s Profile";
+      details.innerHTML = `
+        <li><strong>Age:</strong> ${patient.age}</li>
+        <li><strong>Sex:</strong> ${patient.sex}</li>
+        <li><strong>Weight:</strong> ${patient.weight} kg</li>
+        <li><strong>Blood Group:</strong> ${patient.bloodGroup}</li>
+        <li><strong>Last Visit:</strong> ${patient.lastVisit || "N/A"}</li>
+        <li><strong>Symptoms:</strong> ${patient.symptoms || "None"}</li>
+        <li><strong>Heart Rate:</strong> ${patient.heartRate} bpm</li>
+        <li><strong>Temperature:</strong> ${patient.temperature} °C</li>
+      `;
+      profileView.classList.remove("hidden");
+      formView.classList.add("hidden");
+      listView.classList.add("hidden");
+    }
+
+    // Start with form view
+    showForm();
+  </script>
+</body>
+</html>
