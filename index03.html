@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swastrix – Smart EMR</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    }
+
+    /* Navbar */
+    nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: transparent;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    nav .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1e3a8a;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #2563eb;
+    }
+
+    /* Hero Section */
+    .landing {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 100vh;
+      padding: 100px 80px 50px;
+      gap: 40px;
+    }
+
+    .content {
+      max-width: 50%;
+    }
+
+    .content h1 {
+      font-size: 3.2rem;
+      margin-bottom: 20px;
+      color: #1e3a8a;
+    }
+
+    .content h3 {
+      font-size: 1.8rem;
+      color: #000;
+      margin-bottom: 25px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #000;
+      width: 0;
+      animation: typing 3s steps(30, end) forwards, blink 0.7s step-end infinite;
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background: #1e40af;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+    }
+
+    /* Hero Image */
+    .hero-img {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-img img {
+      width: 95%;
+      max-width: 600px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    /* Typing Animation */
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: black; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Swastrix</div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="landing">
+    <div class="content">
+      <h1>Swastrix</h1>
+      <h3>Smart EMR, Smarter Care</h3>
+      <p>Experience a seamless digital healthcare journey with AI-powered insights, smart records, and patient-friendly dashboards.</p>
+      <a href="index.html" class="btn">Get Started</a>
+    </div>
+    <div class="hero-img">
+      <img src="hero.png" alt="Hero Image" height="300px" width="500px">
+    </div>
+    <div class="gradient-circle circle-small"></div>
+<div class="gradient-circle circle-medium"></div>
+<div class="gradient-circle circle-large"></div>
+
+  </section>
+</body>
+</html>
+<style>.gradient-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,130,246,0.5), rgba(59,130,246,0));
+  z-index: -1; /* Keep it behind content */
+}
+
+/* Example Sizes and Positions */
+.circle-small {
+  width: 150px;
+  height: 150px;
+  top: 10%;
+  left: 15%;
+}
+
+.circle-medium {
+  width: 250px;
+  height: 250px;
+  bottom: 20%;
+  left: 5%;
+}
+
+.circle-large {
+  width: 400px;
+  height: 400px;
+  top: 30%;
+  right: 10%;
+</style>
+
+
+
+
